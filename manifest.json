@@ -1,0 +1,26 @@
+{
+  "manifest_version": 3,
+  "name": "No Shorts",
+  "version": "1.0.0",
+  "description": "Blocks YouTube Shorts — redirects Shorts URLs and hides Shorts from feeds.",
+  "permissions": ["storage"],
+  "host_permissions": ["*://*.youtube.com/*"],
+  "content_scripts": [
+    {
+      "matches": ["*://*.youtube.com/*"],
+      "js": ["content.js"],
+      "run_at": "document_start"
+    }
+  ],
+  "action": {
+    "default_popup": "popup.html",
+    "default_icon": {
+      "48": "icon48.png",
+      "128": "icon128.png"
+    }
+  },
+  "icons": {
+    "48": "icon48.png",
+    "128": "icon128.png"
+  }
+}

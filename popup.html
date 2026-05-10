@@ -1,0 +1,178 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>No Shorts</title>
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=DM+Mono:wght@400;500&family=DM+Sans:wght@400;600&display=swap');
+
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    body {
+      width: 260px;
+      background: #0d0d0d;
+      color: #f0f0f0;
+      font-family: 'DM Sans', sans-serif;
+      padding: 20px;
+      overflow: hidden;
+    }
+
+    .logo-row {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      margin-bottom: 18px;
+    }
+
+    .icon {
+      width: 36px;
+      height: 36px;
+      background: #ff2d2d;
+      border-radius: 8px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+    }
+
+    .icon svg {
+      width: 20px;
+      height: 20px;
+      fill: #fff;
+    }
+
+    .title {
+      font-size: 18px;
+      font-weight: 600;
+      letter-spacing: -0.3px;
+    }
+
+    .subtitle {
+      font-size: 11px;
+      color: #666;
+      font-family: 'DM Mono', monospace;
+      letter-spacing: 0.5px;
+      text-transform: uppercase;
+    }
+
+    .status-card {
+      background: #1a1a1a;
+      border: 1px solid #2a2a2a;
+      border-radius: 10px;
+      padding: 14px 16px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      margin-bottom: 14px;
+    }
+
+    .status-label {
+      font-size: 13px;
+      color: #aaa;
+    }
+
+    .status-value {
+      font-family: 'DM Mono', monospace;
+      font-size: 12px;
+      font-weight: 500;
+      padding: 3px 10px;
+      border-radius: 20px;
+      transition: all 0.2s;
+    }
+
+    .status-value.active {
+      background: #1a3a1a;
+      color: #4cff72;
+      border: 1px solid #2a5a2a;
+    }
+
+    .status-value.inactive {
+      background: #3a1a1a;
+      color: #ff6b6b;
+      border: 1px solid #5a2a2a;
+    }
+
+    .features {
+      background: #1a1a1a;
+      border: 1px solid #2a2a2a;
+      border-radius: 10px;
+      overflow: hidden;
+      margin-bottom: 14px;
+    }
+
+    .feature {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      padding: 11px 16px;
+      font-size: 12px;
+      color: #bbb;
+      border-bottom: 1px solid #222;
+    }
+
+    .feature:last-child { border-bottom: none; }
+
+    .feature-dot {
+      width: 6px;
+      height: 6px;
+      border-radius: 50%;
+      background: #4cff72;
+      flex-shrink: 0;
+    }
+
+    .footer {
+      font-family: 'DM Mono', monospace;
+      font-size: 10px;
+      color: #444;
+      text-align: center;
+      letter-spacing: 0.3px;
+    }
+  </style>
+</head>
+<body>
+  <div class="logo-row">
+    <div class="icon">
+      <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+        <!-- Scissors / cut icon -->
+        <path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5"/>
+        <!-- Simpler: ban / block symbol -->
+      </svg>
+      <!-- Inline SVG: red circle with line through a play button -->
+      <svg viewBox="0 0 24 24" style="display:none"></svg>
+    </div>
+    <div>
+      <div class="title">No Shorts</div>
+      <div class="subtitle">YouTube Shorts Blocker</div>
+    </div>
+  </div>
+
+  <div class="status-card">
+    <span class="status-label">Extension status</span>
+    <span class="status-value active" id="statusBadge">ACTIVE</span>
+  </div>
+
+  <div class="features">
+    <div class="feature">
+      <div class="feature-dot"></div>
+      Redirects /shorts/* to full video player
+    </div>
+    <div class="feature">
+      <div class="feature-dot"></div>
+      Hides Shorts shelf from homepage
+    </div>
+    <div class="feature">
+      <div class="feature-dot"></div>
+      Removes Shorts from sidebar nav
+    </div>
+    <div class="feature">
+      <div class="feature-dot"></div>
+      Filters Shorts from search results
+    </div>
+  </div>
+
+  <div class="footer">v1.0.0 · No Shorts Extension</div>
+
+  <script src="popup.js"></script>
+</body>
+</html>
