@@ -16,17 +16,16 @@
         }
     }
 
-    redirectIfShorts();
-
     function redirectIfPlayables() {
         if (location.pathname.startsWith('/playables')) {
             window.location.replace('https://www.youtube.com/');
         }
     }
 
+    redirectIfShorts();
     redirectIfPlayables();
 
-    // ── 2. CSS injection — hide Shorts shelves & sidebar entries ─────────────
+    // ── 2. CSS injection — hide Shorts/Playables shelves & sidebar entries ───
     const STYLE_ID = 'no-shorts-style';
 
     function injectStyle() {
@@ -49,17 +48,14 @@
       /* Search results — Shorts video cards */
       ytd-video-renderer[is-shorts],
 
-      /* Inline Shorts shelf in search */
-      ytd-reel-shelf-renderer {
-        display: none !important;
-
       /* Playables: sidebar, shelves, cards */
       ytd-guide-entry-renderer:has(a[href^="/playables"]),
       ytd-mini-guide-entry-renderer:has(a[href^="/playables"]),
       ytd-rich-section-renderer:has(a[href*="/playables"]),
       ytd-rich-shelf-renderer:has(a[href*="/playables"]),
       ytd-rich-item-renderer:has(a[href*="/playables"]),
-      ytd-video-renderer:has(a[href*="/playables"]),
+      ytd-video-renderer:has(a[href*="/playables"]) {
+        display: none !important;
       }
     `;
         (document.head || document.documentElement).appendChild(style);
@@ -67,7 +63,7 @@
 
     injectStyle();
 
-    // ── 3. DOM observer — catch dynamically rendered Shorts elements ──────────
+    // ── 3. DOM observer — catch dynamically rendered elements ────────────────
     const SHORTS_SELECTORS = [
         'ytd-reel-shelf-renderer',
         'ytd-rich-shelf-renderer[is-shorts]',
@@ -86,8 +82,9 @@
     }
 
     const observer = new MutationObserver(() => {
-        // Re-run redirect check (SPA navigation)
+        // Re-run redirect checks (SPA navigation)
         redirectIfShorts();
+        redirectIfPlayables();
 
         // Hide any newly injected Shorts nodes
         SHORTS_SELECTORS.forEach(sel => {
